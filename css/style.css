@@ -56,6 +56,26 @@ button {
   --color-bgr-dark: #2f303a;
 }
 
+/*Службові теги*/
+.accent {
+  color: var(--color-accent);
+}
+.link-inherit {
+  color: inherit;
+}
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
 /* Загальні класи */
 body {
   font-family: 'Roboto', sans-serif;
@@ -114,15 +134,33 @@ body {
 }
 
 .header-navigation-link {
+  position: relative;
   display: inline-block;
   padding-top: 32px;
   padding-bottom: 32px;
 
+  color: inherit;
   line-height: calc(16 / 14);
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--color-bold);
 }
+.header-navigation-link.active {
+  color: var(--color-accent);
+}
+.header-navigation-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+
+  display: block;
+  height: 4px;
+  width: 100%;
+
+  border-radius: 2px;
+  background-color: var(--color-accent);
+}
+
 .header-navigation-item:not(:last-child),
 .header-contact li:not(:last-child) {
   margin-right: 50px;
@@ -464,27 +502,4 @@ body {
   padding: 20px 24px;
   border: 1px solid #eeeeee;
   border-top: none;
-}
-
-/*Службові теги*/
-.accent {
-  color: var(--color-accent);
-}
-.active {
-  color: var(--color-accent);
-}
-.link-inherit {
-  color: inherit;
-}
-.visually-hidden {
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  margin: -1px;
 }
