@@ -28,6 +28,7 @@ textarea {
   font-size: inherit;
   border: none;
   outline: none;
+  background: inherit;
 }
 a:focus,
 a:active {
@@ -54,6 +55,8 @@ button {
   --color-bgr-grey: #f5f4fa;
   --color-bgr-lhgt-grey: #f5f5f5;
   --color-bgr-dark: #2f303a;
+
+  --basic-cubic: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /*Службові теги*/
@@ -76,6 +79,12 @@ button {
   margin: -1px;
 }
 
+.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* Загальні класи */
 body {
   font-family: 'Roboto', sans-serif;
@@ -91,6 +100,10 @@ body {
   font-weight: 700;
   font-size: 26px;
   line-height: calc(31 / 26);
+}
+
+.hover-accent {
+  transition: color 250ms var(--basic-cubic);
 }
 
 .hover-accent:hover,
@@ -139,7 +152,6 @@ body {
   padding-top: 32px;
   padding-bottom: 32px;
 
-  color: inherit;
   line-height: calc(16 / 14);
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -273,10 +285,29 @@ body {
   flex-wrap: wrap;
 }
 .works-item {
+  position: relative;
   flex-basis: calc((100% - 60px) / 3);
 }
 .works-item:not(:last-child) {
   margin-right: 30px;
+}
+.works-item-label {
+  position: absolute;
+  bottom: 0;
+
+  display: block;
+  width: 100%;
+  padding-top: 27px;
+  padding-bottom: 27px;
+
+  font-weight: 700;
+  line-height: calc(16 / 14);
+  text-align: center;
+  text-transform: uppercase;
+
+  color: var(--color-white);
+
+  background: rgba(47, 48, 58, 0.8);
 }
 
 /* Team */
@@ -330,13 +361,7 @@ body {
   width: 44px;
   height: 44px;
 }
-.team-link a:hover,
-.team-link a:focus,
-.footer-link a:hover,
-.footer-link a:focus {
-  color: var(--color-white);
-  background-color: var(--color-accent);
-}
+
 .team-link a,
 .footer-link a {
   display: flex;
@@ -346,7 +371,18 @@ body {
 
   width: 100%;
   height: 100%;
+
+  transition: color 250ms var(--basic-cubic), background-color 250ms var(--basic-cubic);
 }
+
+.team-link a:hover,
+.team-link a:focus,
+.footer-link a:hover,
+.footer-link a:focus {
+  color: var(--color-white);
+  background-color: var(--color-accent);
+}
+
 .team-link a {
   color: var(--color-icon);
 }
@@ -385,6 +421,8 @@ body {
   border-style: solid;
   border-color: var(--color-icon);
   border-radius: 4px;
+
+  transition: color 250ms var(--basic-cubic), border-color 250ms var(--basic-cubic);
 }
 .clients-item a:hover,
 .clients-item a:focus {
@@ -393,6 +431,42 @@ body {
 }
 .clients-item-vector {
   fill: currentColor;
+}
+
+/* Modal-page */
+
+.modal-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2);
+}
+.modal-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 528px;
+  height: 581px;
+  background-color: var(--color-white);
+}
+
+.modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
 }
 
 /* Footer */
@@ -448,6 +522,8 @@ body {
   text-align: center;
   color: var(--color-bold);
   background-color: var(--color-bgr-grey);
+  transition: box-shadow 250ms var(--basic-cubic), color 250ms var(--basic-cubic),
+    background-color 250ms var(--basic-cubic);
 }
 .filter-btn.active-btn,
 .filter-btn:hover,
@@ -485,6 +561,7 @@ body {
 .portfolio-item {
   flex-basis: calc((100% - 90px) / 3);
   margin: 15px;
+  transition: box-shadow 250ms var(--basic-cubic);
 }
 
 .portfolio-item:hover {
@@ -502,4 +579,31 @@ body {
   padding: 20px 24px;
   border: 1px solid #eeeeee;
   border-top: none;
+}
+
+.portfolio-img-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.portfolio-img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  padding: 63px 24px;
+
+  background: rgba(33, 150, 243, 0.9);
+  transform: translateY(100%);
+  transition: transform 250ms var(--basic-cubic);
+}
+.portfolio-item:hover .portfolio-img-overlay {
+  transform: translateY(0%);
+}
+
+.portfolio-img-overlay p {
+  font-size: 18px;
+  line-height: 1.56;
+  color: #ffffff;
 }
