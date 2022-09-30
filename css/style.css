@@ -601,7 +601,8 @@ body {
   transform: translateY(100%);
   transition: transform 250ms var(--basic-cubic);
 }
-.portfolio-item:hover .portfolio-img-overlay {
+.portfolio-link:hover .portfolio-img-overlay,
+.portfolio-link:focus .portfolio-img-overlay {
   transform: translateY(0%);
 }
 
