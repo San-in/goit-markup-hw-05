@@ -376,9 +376,7 @@ body {
 }
 
 .team-link a:hover,
-.team-link a:focus,
-.footer-link a:hover,
-.footer-link a:focus {
+.team-link a:focus {
   color: var(--color-white);
   background-color: var(--color-accent);
 }
@@ -442,6 +440,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.2);
+  transition: opacity 250ms var(--basic-cubic), visibility 250ms var(--basic-cubic);
 }
 .modal-form {
   position: absolute;
@@ -491,6 +490,10 @@ body {
 .footer-link a {
   background-color: rgba(255, 255, 255, 0.1);
   color: var(--color-white);
+}
+.footer-link a:hover,
+.footer-link a:focus {
+  background-color: var(--color-accent);
 }
 
 .footer-logo {
